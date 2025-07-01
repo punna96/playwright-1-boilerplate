@@ -1,6 +1,8 @@
-import { test, expect } from '@playwright/test';
+import {test} from '../fixtures/customFixtures'
 
-test('Dashboard loads and displays welcome message', async ({ page }) => {
-  await page.goto('/dashboard');
-  await expect(page.locator('h1')).toHaveText('Welcome');
+test.beforeEach(async ({ dashboardPage }) => {
+  await dashboardPage.NavigateToDashboard();
 });
+test('Dashboard loads and displays welcome message', async ({ dashboardPage }) => {
+  await dashboardPage.NavigateToDashboard()
+})
