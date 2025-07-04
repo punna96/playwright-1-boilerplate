@@ -4,6 +4,10 @@ import * as fs from 'fs';
 
 dotenv.config();
 
+// Check if storage state file exists
+const storageStatePath = 'auth/auth.json';
+const storageState = fs.existsSync(storageStatePath) ? storageStatePath : undefined;
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -35,7 +39,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     baseURL: process.env.BASE_URL,
-    storageState: 'auth/auth.json',
+    ...(storageState && { storageState }),
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
