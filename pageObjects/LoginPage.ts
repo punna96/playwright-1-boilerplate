@@ -6,12 +6,12 @@ export class LoginPage {
   readonly page: Page;
   readonly username: Locator;
   readonly password: Locator;
-  readonly submitbutton: Locator;
+  readonly submitButton: Locator;
   constructor(page: Page) {
     this.page = page;
     this.username = page.locator('[data-testid="username"]');
     this.password = page.locator('[data-testid="password"]');
-    this.submitbutton = page.locator('[data-testid="login-btn"]');
+    this.submitButton = page.locator('[data-testid="login-btn"]');
   }
 
   async navigate() {
@@ -24,10 +24,10 @@ export class LoginPage {
 
   async verifyinvalidlogin() {
     await expect(this.username).toHaveText(
-      validationmessages.login.requiredemail
+      validationmessages.login.requiredEmail
     );
     await expect(this.password).toHaveText(
-      validationmessages.login.requiredpassword
+      validationmessages.login.requiredPassword
     );
   }
 }
